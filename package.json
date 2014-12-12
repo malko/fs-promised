@@ -1,0 +1,12 @@
+{
+  "name": "fs-promised",
+  "version": "0.0.1",
+  "description": "fs methods returning promised using d.js promise library",
+  "main": "fs-promised.js",
+  "dependencies": {
+    "d.js": "^0.7.0"
+  },
+  "author": "Jonathan Gotti",
+  "license": "MIT"
+}
+
