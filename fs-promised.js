@@ -72,4 +72,23 @@ fs.watchDeduped = function(filename, options, listener){
 
 };
 
+fs.copy = function(source, dest, cb){
+	var readStream = fs.createReadStream(source)
+		, writeStream = fs.createWriteStream(dest)
+		, cbCalled = false
+		, done = function(err) {
+			cbCalled || cb(err);
+			cbCalled = true;
+		}
+	;
+	readStream.on("error", done);
+
+	writeStream.on("error", done);
+	writeStream.on("close", function() {
+		done();
+	});
+	readStream.pipe(writeStream);
+};
+fs.copyPromise = D.nodeCapsule(fs, fs.copy);
+
 module.exports = fs;
